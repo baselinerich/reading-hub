@@ -34,30 +34,37 @@
   <div class="muted">Tip: update links in <code>week</code> below each Sunday.</div>
 
 <script>
-  // Mon..Sun (edit these for next week)
-  const week = {
-    1: { poem: ["O Captain! My Captain! (Whitman)", "https://www.poetryfoundation.org/poems/45474/o-captain-my-captain"],
-         story:["The Lottery (Shirley Jackson)", "https://www.newyorker.com/magazine/1948/06/26/the-lottery"],
-         essay:["Politics and the English Language (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/"] },
-    2: { poem: ["If— (Kipling)", "https://www.poetryfoundation.org/poems/46473/if---"],
-         story:["The Yellow Wallpaper (Gilman)", "https://www.gutenberg.org/ebooks/1952"],
-         essay:["On Self-Respect (Didion)", "https://www.vogue.com/article/joan-didion-self-respect-essay-1961"] },
-    3: { poem: ["Invictus (Henley)", "https://www.poetryfoundation.org/poems/51642/invictus"],
-         story:["Bartleby, the Scrivener (Melville)", "https://www.gutenberg.org/ebooks/11231"],
-         essay:["Walking (Thoreau)", "https://www.gutenberg.org/ebooks/1022"] },
-    4: { poem: ["Because I could not stop for Death (Dickinson)", "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479"],
-         story:["A Clean, Well-Lighted Place (Hemingway)", "https://shortstoryproject.com/stories/a-clean-well-lighted-place/"],
-         essay:["Why I Write (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/why-i-write/"] },
-    5: { poem: ["Do Not Go Gentle into That Good Night (Thomas)", "https://poets.org/poem/do-not-go-gentle-good-night"],
-         story:["The Metamorphosis (Kafka)", "https://www.gutenberg.org/ebooks/5200"],
-         essay:["The Myth of Sisyphus (Camus) — overview", "https://plato.stanford.edu/entries/camus/"] },
-    6: { poem: ["Stopping by Woods on a Snowy Evening (Frost)", "https://www.poetryfoundation.org/poems/42891/stopping-by-woods-on-a-snowy-evening"],
-         story:["The Ones Who Walk Away from Omelas (Le Guin)", "https://shsdavisapes.pbworks.com/f/Omelas.pdf"],
-         essay:["Consider the Lobster (DFW)", "https://jsomers.net/DFW_TLOB.pdf"] },
-    0: { poem: ["Desiderata (Ehrmann)", "https://www.desiderata.com/desiderata.html"],
-         story:["A Jury of Her Peers (Susan Glaspell)", "https://www.gutenberg.org/ebooks/20872"],
-         essay:["The Soul of Man Under Socialism (Wilde)", "https://www.gutenberg.org/ebooks/1017"] },
-  };
+// Mon..Sun (edit these for next week)
+const week = {
+  1: { poem: ["O Captain! My Captain! (Whitman)", "https://www.poetryfoundation.org/poems/45474/o-captain-my-captain"],
+       story:["The Open Window (Saki)", "https://en.wikisource.org/wiki/Beasts_and_Super-Beasts/The_Open_Window"],
+       essay:["Politics and the English Language (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/"] },
+
+  2: { poem: ["If— (Kipling)", "https://www.poetryfoundation.org/poems/46473/if---"],
+       story:["The Yellow Wallpaper (Gilman)", "https://www.gutenberg.org/ebooks/1952"],
+       essay:["Self-Reliance (Emerson)", "https://www.gutenberg.org/ebooks/16643"] },
+
+  3: { poem: ["Invictus (Henley)", "https://www.poetryfoundation.org/poems/51642/invictus"],
+       story:["Bartleby, the Scrivener (Melville)", "https://www.gutenberg.org/ebooks/11231"],
+       essay:["Walking (Thoreau)", "https://www.gutenberg.org/ebooks/1022"] },
+
+  4: { poem: ["Because I could not stop for Death (Dickinson)", "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479"],
+       story:["An Occurrence at Owl Creek Bridge (Bierce)", "https://www.gutenberg.org/ebooks/375"],
+       essay:["Why I Write (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/why-i-write/"] },
+
+  5: { poem: ["Do Not Go Gentle into That Good Night (Thomas)", "https://poets.org/poem/do-not-go-gentle-good-night"],
+       story:["The Metamorphosis (Kafka)", "https://www.gutenberg.org/ebooks/5200"],
+       essay:["Albert Camus (Stanford Encyclopedia)", "https://plato.stanford.edu/entries/camus/"] },
+
+  6: { poem: ["Stopping by Woods on a Snowy Evening (Frost)", "https://www.poetryfoundation.org/poems/42891/stopping-by-woods-on-a-snowy-evening"],
+       story:["The Monkey's Paw (W. W. Jacobs)", "https://en.wikisource.org/wiki/The_Lady_of_the_Barge/The_Monkey%27s_Paw"],
+       essay:["Civil Disobedience (Thoreau)", "https://www.gutenberg.org/ebooks/71"] },
+
+  0: { poem: ["Desiderata (Ehrmann)", "https://en.wikisource.org/wiki/Desiderata"],
+       story:["A Jury of Her Peers (Susan Glaspell)", "https://www.gutenberg.org/ebooks/20872"],
+       essay:["The Soul of Man Under Socialism (Wilde)", "https://www.gutenberg.org/ebooks/1017"] },
+};
+
 
   const now = new Date();
   const day = now.getDay(); // Sun=0..Sat=6
