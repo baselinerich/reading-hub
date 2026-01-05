@@ -1,0 +1,40 @@
+﻿{
+  "weekOf": "2026-02-01",
+  "days": {
+    "0": {
+      "poem":  { "title": "Sonnet 29 (Shakespeare)", "url": "https://en.wikisource.org/wiki/Sonnet_29" },
+      "story": { "title": "Rip Van Winkle (Irving)", "url": "https://en.wikisource.org/wiki/Rip_Van_Winkle" },
+      "essay": { "title": "Of Friendship (Montaigne)", "url": "https://en.wikisource.org/wiki/Essays_(Montaigne)/Of_Friendship" }
+    },
+    "1": {
+      "poem":  { "title": "A Poison Tree (Blake)", "url": "https://en.wikisource.org/wiki/A_Poison_Tree" },
+      "story": { "title": "The Purloined Letter (Poe)", "url": "https://en.wikisource.org/wiki/The_Purloined_Letter" },
+      "essay": { "title": "The Ethics of Belief (Clifford)", "url": "https://en.wikisource.org/wiki/The_Ethics_of_Belief" }
+    },
+    "2": {
+      "poem":  { "title": "Dover Beach (Arnold)", "url": "https://en.wikisource.org/wiki/Dover_Beach" },
+      "story": { "title": "The Devil and Tom Walker (Irving)", "url": "https://en.wikisource.org/wiki/The_Devil_and_Tom_Walker" },
+      "essay": { "title": "Stoicism (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/stoicism/" }
+    },
+    "3": {
+      "poem":  { "title": "The Charge of the Light Brigade (Tennyson)", "url": "https://en.wikisource.org/wiki/The_Charge_of_the_Light_Brigade" },
+      "story": { "title": "The Facts in the Case of M. Valdemar (Poe)", "url": "https://en.wikisource.org/wiki/The_Facts_in_the_Case_of_M._Valdemar" },
+      "essay": { "title": "What is Enlightenment? (Kant)", "url": "https://en.wikisource.org/wiki/What_is_Enlightenment%3F" }
+    },
+    "4": {
+      "poem":  { "title": "The World Is Too Much with Us (Wordsworth)", "url": "https://en.wikisource.org/wiki/The_world_is_too_much_with_us" },
+      "story": { "title": "The Masque of the Red Death (Poe)", "url": "https://en.wikisource.org/wiki/The_Masque_of_the_Red_Death" },
+      "essay": { "title": "Free Will (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/freewill/" }
+    },
+    "5": {
+      "poem":  { "title": "Sonnet 73 (Shakespeare)", "url": "https://en.wikisource.org/wiki/Sonnet_73" },
+      "story": { "title": "The Adventure of the Speckled Band (Conan Doyle)", "url": "https://en.wikisource.org/wiki/The_Adventure_of_the_Speckled_Band" },
+      "essay": { "title": "Utilitarianism (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/utilitarianism-history/" }
+    },
+    "6": {
+      "poem":  { "title": "The Road Not Taken (Frost)", "url": "https://www.poetryfoundation.org/poems/44272/the-road-not-taken" },
+      "story": { "title": "The Open Boat (Crane)", "url": "https://en.wikisource.org/wiki/The_Open_Boat" },
+      "essay": { "title": "Existentialism (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/existentialism/" }
+    }
+  }
+}

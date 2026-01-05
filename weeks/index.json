@@ -1,5 +1,9 @@
 ﻿{
   "weeks": [
-    { "weekOf": "2026-01-04", "label": "Week of 2026-01-04" }
+    { "weekOf": "2026-01-04", "label": "Week of 2026-01-04" },
+    { "weekOf": "2026-01-11", "label": "Week of 2026-01-11" },
+    { "weekOf": "2026-01-18", "label": "Week of 2026-01-18" },
+    { "weekOf": "2026-01-25", "label": "Week of 2026-01-25" },
+    { "weekOf": "2026-02-01", "label": "Week of 2026-02-01" }
   ]
 }

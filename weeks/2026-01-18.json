@@ -1,0 +1,40 @@
+﻿{
+  "weekOf": "2026-01-18",
+  "days": {
+    "0": {
+      "poem":  { "title": "A Psalm of Life (Longfellow)", "url": "https://en.wikisource.org/wiki/A_Psalm_of_Life" },
+      "story": { "title": "The Celebrated Jumping Frog of Calaveras County (Twain)", "url": "https://en.wikisource.org/wiki/The_Celebrated_Jumping_Frog_of_Calaveras_County" },
+      "essay": { "title": "Gettysburg Address (Lincoln)", "url": "https://en.wikisource.org/wiki/Gettysburg_Address" }
+    },
+    "1": {
+      "poem":  { "title": "The Raven (Poe)", "url": "https://en.wikisource.org/wiki/The_Raven" },
+      "story": { "title": "The Bet (Chekhov)", "url": "https://en.wikisource.org/wiki/The_Bet" },
+      "essay": { "title": "On Going a Journey (Hazlitt)", "url": "https://en.wikisource.org/wiki/On_Going_a_Journey" }
+    },
+    "2": {
+      "poem":  { "title": "She Walks in Beauty (Byron)", "url": "https://en.wikisource.org/wiki/She_Walks_in_Beauty" },
+      "story": { "title": "The Last Leaf (O. Henry)", "url": "https://en.wikisource.org/wiki/The_Last_Leaf" },
+      "essay": { "title": "Meditation XVII (Donne)", "url": "https://en.wikisource.org/wiki/Meditation_XVII" }
+    },
+    "3": {
+      "poem":  { "title": "Annabel Lee (Poe)", "url": "https://en.wikisource.org/wiki/Annabel_Lee" },
+      "story": { "title": "The Lottery Ticket (Chekhov)", "url": "https://en.wikisource.org/wiki/The_Lottery_Ticket" },
+      "essay": { "title": "Compatibilism (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/compatibilism/" }
+    },
+    "4": {
+      "poem":  { "title": "The New Colossus (Lazarus)", "url": "https://en.wikisource.org/wiki/The_New_Colossus" },
+      "story": { "title": "The Cask of Amontillado (Poe)", "url": "https://en.wikisource.org/wiki/The_Cask_of_Amontillado" },
+      "essay": { "title": "The Allegory of the Cave (Plato)", "url": "https://en.wikisource.org/wiki/The_Allegory_of_the_Cave" }
+    },
+    "5": {
+      "poem":  { "title": "Sonnet 130 (Shakespeare)", "url": "https://en.wikisource.org/wiki/Sonnet_130" },
+      "story": { "title": "A Pair of Silk Stockings (Chopin)", "url": "https://en.wikisource.org/wiki/A_Pair_of_Silk_Stockings" },
+      "essay": { "title": "The Moral Equivalent of War (William James)", "url": "https://en.wikisource.org/wiki/The_Moral_Equivalent_of_War" }
+    },
+    "6": {
+      "poem":  { "title": "Song: To Celia (Jonson)", "url": "https://en.wikisource.org/wiki/Song:_To_Celia" },
+      "story": { "title": "The Cop and the Anthem (O. Henry)", "url": "https://en.wikisource.org/wiki/The_Cop_and_the_Anthem" },
+      "essay": { "title": "Happiness (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/happiness/" }
+    }
+  }
+}

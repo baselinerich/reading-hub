@@ -1,0 +1,40 @@
+﻿{
+  "weekOf": "2026-01-25",
+  "days": {
+    "0": {
+      "poem":  { "title": "I Wandered Lonely as a Cloud (Wordsworth)", "url": "https://en.wikisource.org/wiki/I_Wandered_Lonely_as_a_Cloud" },
+      "story": { "title": "The Adventure of the Blue Carbuncle (Conan Doyle)", "url": "https://en.wikisource.org/wiki/The_Adventure_of_the_Blue_Carbuncle" },
+      "essay": { "title": "On Reading and Books (Schopenhauer)", "url": "https://en.wikisource.org/wiki/On_Reading_and_Books" }
+    },
+    "1": {
+      "poem":  { "title": "Kubla Khan (Coleridge)", "url": "https://en.wikisource.org/wiki/Kubla_Khan" },
+      "story": { "title": "The Adventure of the Red-Headed League (Conan Doyle)", "url": "https://en.wikisource.org/wiki/The_Adventure_of_the_Red-Headed_League" },
+      "essay": { "title": "Justice (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/justice/" }
+    },
+    "2": {
+      "poem":  { "title": "To Autumn (Keats)", "url": "https://en.wikisource.org/wiki/To_Autumn" },
+      "story": { "title": "The Mark of the Beast (Kipling)", "url": "https://en.wikisource.org/wiki/The_Mark_of_the_Beast" },
+      "essay": { "title": "Meditations — Book 2 (Marcus Aurelius)", "url": "https://en.wikisource.org/wiki/The_Meditations_of_Marcus_Aurelius/Book_2" }
+    },
+    "3": {
+      "poem":  { "title": "Sonnet 116 (Shakespeare)", "url": "https://en.wikisource.org/wiki/Sonnet_116" },
+      "story": { "title": "The Black Cat (Poe)", "url": "https://en.wikisource.org/wiki/The_Black_Cat" },
+      "essay": { "title": "On the Decay of the Art of Lying (Twain)", "url": "https://en.wikisource.org/wiki/On_the_Decay_of_the_Art_of_Lying" }
+    },
+    "4": {
+      "poem":  { "title": "A Red, Red Rose (Burns)", "url": "https://en.wikisource.org/wiki/A_Red,_Red_Rose" },
+      "story": { "title": "The Star (H. G. Wells)", "url": "https://en.wikisource.org/wiki/The_Star_(Wells)" },
+      "essay": { "title": "The American Scholar (Emerson)", "url": "https://en.wikisource.org/wiki/The_American_Scholar" }
+    },
+    "5": {
+      "poem":  { "title": "The Chimney Sweeper (Blake)", "url": "https://en.wikisource.org/wiki/The_Chimney_Sweeper" },
+      "story": { "title": "The Red Room (H. G. Wells)", "url": "https://en.wikisource.org/wiki/The_Red_Room" },
+      "essay": { "title": "Scientific Method (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/scientific-method/" }
+    },
+    "6": {
+      "poem":  { "title": "The Owl and the Pussy-Cat (Lear)", "url": "https://en.wikisource.org/wiki/The_Owl_and_the_Pussy-cat" },
+      "story": { "title": "The Happy Prince (Wilde)", "url": "https://en.wikisource.org/wiki/The_Happy_Prince_and_Other_Tales/The_Happy_Prince" },
+      "essay": { "title": "Friendship (Emerson)", "url": "https://en.wikisource.org/wiki/Friendship_(Emerson)" }
+    }
+  }
+}

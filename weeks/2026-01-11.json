@@ -1,0 +1,40 @@
+﻿{
+  "weekOf": "2026-01-11",
+  "days": {
+    "0": {
+      "poem":  { "title": "Sonnet 18 (Shakespeare)", "url": "https://en.wikisource.org/wiki/Sonnet_18" },
+      "story": { "title": "The Gift of the Magi (O. Henry)", "url": "https://en.wikisource.org/wiki/The_Gift_of_the_Magi" },
+      "essay": { "title": "A Modest Proposal (Swift)", "url": "https://en.wikisource.org/wiki/A_Modest_Proposal" }
+    },
+    "1": {
+      "poem":  { "title": "Hope is the thing with feathers (Dickinson)", "url": "https://en.wikisource.org/wiki/Hope_is_the_thing_with_feathers" },
+      "story": { "title": "The Tell-Tale Heart (Poe)", "url": "https://en.wikisource.org/wiki/The_Tell-Tale_Heart" },
+      "essay": { "title": "Self-Reliance (Emerson)", "url": "https://en.wikisource.org/wiki/Self-Reliance" }
+    },
+    "2": {
+      "poem":  { "title": "The Tyger (Blake)", "url": "https://en.wikisource.org/wiki/The_Tyger" },
+      "story": { "title": "The Story of an Hour (Chopin)", "url": "https://en.wikisource.org/wiki/The_Story_of_an_Hour" },
+      "essay": { "title": "On the Shortness of Life (Seneca)", "url": "https://en.wikisource.org/wiki/On_the_Shortness_of_Life" }
+    },
+    "3": {
+      "poem":  { "title": "I Hear America Singing (Whitman)", "url": "https://en.wikisource.org/wiki/I_Hear_America_Singing" },
+      "story": { "title": "The Most Dangerous Game (Connell)", "url": "https://en.wikisource.org/wiki/The_Most_Dangerous_Game" },
+      "essay": { "title": "Resistance to Civil Government (Thoreau)", "url": "https://en.wikisource.org/wiki/Resistance_to_Civil_Government" }
+    },
+    "4": {
+      "poem":  { "title": "Ozymandias (Shelley)", "url": "https://en.wikisource.org/wiki/Ozymandias" },
+      "story": { "title": "The Lady, or the Tiger? (Stockton)", "url": "https://en.wikisource.org/wiki/The_Lady,_or_the_Tiger%3F" },
+      "essay": { "title": "Of Studies (Bacon)", "url": "https://en.wikisource.org/wiki/Essays_(Bacon)/Of_Studies" }
+    },
+    "5": {
+      "poem":  { "title": "Do Not Go Gentle into That Good Night (Thomas)", "url": "https://poets.org/poem/do-not-go-gentle-good-night" },
+      "story": { "title": "To Build a Fire (London)", "url": "https://en.wikisource.org/wiki/To_Build_a_Fire" },
+      "essay": { "title": "The Meaning of Life (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/life-meaning/" }
+    },
+    "6": {
+      "poem":  { "title": "Jabberwocky (Carroll)", "url": "https://en.wikisource.org/wiki/Jabberwocky" },
+      "story": { "title": "The Necklace (Maupassant)", "url": "https://en.wikisource.org/wiki/The_Necklace_(Maupassant)" },
+      "essay": { "title": "Letter to Menoeceus (Epicurus)", "url": "https://en.wikisource.org/wiki/Letter_to_Menoeceus" }
+    }
+  }
+}
