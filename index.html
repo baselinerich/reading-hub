@@ -1,87 +1,170 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Night Reading</title>
+
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="manifest" href="./manifest.webmanifest">
+
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:24px;max-width:720px}
-    .card{border:1px solid #ddd;border-radius:14px;padding:16px;margin:12px 0}
-    a{word-break:break-word}
-    h1{margin:0 0 8px 0}
+    h1{margin:0 0 6px 0}
     .muted{color:#666}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    button{
+      padding:10px 12px;border:1px solid #ddd;border-radius:12px;background:transparent;cursor:pointer
+    }
+    button:active{transform:scale(0.99)}
+    .card{border:1px solid #ddd;border-radius:16px;padding:16px;margin:12px 0}
+    a.button{
+      display:block; padding:14px 16px; border:1px solid #ddd; border-radius:14px;
+      text-decoration:none; margin-top:10px;
+      word-break:break-word;
+    }
+    a.button:active{transform:scale(0.99)}
+    .doneRow{display:flex;align-items:center;gap:10px;margin-top:10px}
+    .pill{display:inline-block;padding:4px 10px;border:1px solid #ddd;border-radius:999px;font-size:12px}
+    .error{color:#b00020}
   </style>
 </head>
+
 <body>
   <h1>Night Reading</h1>
   <div class="muted" id="date"></div>
+  <div class="muted" id="weekOf"></div>
+  <div class="row">
+    <button id="openAll">Open all</button>
+    <button id="copyLinks">Copy links</button>
+    <span class="pill" id="offlinePill" style="display:none;">Offline</span>
+  </div>
 
   <div class="card">
     <h2>Poem</h2>
-    <a id="poem" href="#" target="_blank" rel="noreferrer"></a>
+    <a class="button" id="poem" href="#" target="_blank" rel="noreferrer"></a>
+    <div class="doneRow">
+      <input type="checkbox" id="poemDone">
+      <label for="poemDone">Done</label>
+    </div>
   </div>
 
   <div class="card">
     <h2>Short story</h2>
-    <a id="story" href="#" target="_blank" rel="noreferrer"></a>
+    <a class="button" id="story" href="#" target="_blank" rel="noreferrer"></a>
+    <div class="doneRow">
+      <input type="checkbox" id="storyDone">
+      <label for="storyDone">Done</label>
+    </div>
   </div>
 
   <div class="card">
     <h2>Essay</h2>
-    <a id="essay" href="#" target="_blank" rel="noreferrer"></a>
+    <a class="button" id="essay" href="#" target="_blank" rel="noreferrer"></a>
+    <div class="doneRow">
+      <input type="checkbox" id="essayDone">
+      <label for="essayDone">Done</label>
+    </div>
   </div>
 
-  <div class="muted">Tip: update links in <code>week</code> below each Sunday.</div>
+  <div class="muted" id="status"></div>
 
 <script>
-// Mon..Sun (edit these for next week)
-const week = {
-  1: { poem: ["O Captain! My Captain! (Whitman)", "https://www.poetryfoundation.org/poems/45474/o-captain-my-captain"],
-       story:["The Open Window (Saki)", "https://en.wikisource.org/wiki/Beasts_and_Super-Beasts/The_Open_Window"],
-       essay:["Politics and the English Language (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/"] },
+  // --- Service worker registration (PWA/offline) ---
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./service-worker.js");
+  }
 
-  2: { poem: ["If— (Kipling)", "https://www.poetryfoundation.org/poems/46473/if---"],
-       story:["The Yellow Wallpaper (Gilman)", "https://www.gutenberg.org/ebooks/1952"],
-       essay:["Self-Reliance (Emerson)", "https://www.gutenberg.org/ebooks/16643"] },
+  const $ = (id) => document.getElementById(id);
 
-  3: { poem: ["Invictus (Henley)", "https://www.poetryfoundation.org/poems/51642/invictus"],
-       story:["Bartleby, the Scrivener (Melville)", "https://www.gutenberg.org/ebooks/11231"],
-       essay:["Walking (Thoreau)", "https://www.gutenberg.org/ebooks/1022"] },
+  function setLink(id, item) {
+    const a = $(id);
+    a.textContent = item.title;
+    a.href = item.url;
+  }
 
-  4: { poem: ["Because I could not stop for Death (Dickinson)", "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479"],
-       story:["An Occurrence at Owl Creek Bridge (Bierce)", "https://www.gutenberg.org/ebooks/375"],
-       essay:["Why I Write (Orwell)", "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/why-i-write/"] },
+  function keyForToday() {
+    const d = new Date();
+    // YYYY-MM-DD local
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    return `${yyyy}-${mm}-${dd}`;
+  }
 
-  5: { poem: ["Do Not Go Gentle into That Good Night (Thomas)", "https://poets.org/poem/do-not-go-gentle-good-night"],
-       story:["The Metamorphosis (Kafka)", "https://www.gutenberg.org/ebooks/5200"],
-       essay:["Albert Camus (Stanford Encyclopedia)", "https://plato.stanford.edu/entries/camus/"] },
+  function bindDone(id, storageKey) {
+    const box = $(id);
+    box.checked = localStorage.getItem(storageKey) === "1";
+    box.addEventListener("change", () => {
+      localStorage.setItem(storageKey, box.checked ? "1" : "0");
+    });
+  }
 
-  6: { poem: ["Stopping by Woods on a Snowy Evening (Frost)", "https://www.poetryfoundation.org/poems/42891/stopping-by-woods-on-a-snowy-evening"],
-       story:["The Monkey's Paw (W. W. Jacobs)", "https://en.wikisource.org/wiki/The_Lady_of_the_Barge/The_Monkey%27s_Paw"],
-       essay:["Civil Disobedience (Thoreau)", "https://www.gutenberg.org/ebooks/71"] },
+  function updateOfflineUI() {
+    $("offlinePill").style.display = navigator.onLine ? "none" : "inline-block";
+  }
+  window.addEventListener("online", updateOfflineUI);
+  window.addEventListener("offline", updateOfflineUI);
 
-  0: { poem: ["Desiderata (Ehrmann)", "https://en.wikisource.org/wiki/Desiderata"],
-       story:["A Jury of Her Peers (Susan Glaspell)", "https://www.gutenberg.org/ebooks/20872"],
-       essay:["The Soul of Man Under Socialism (Wilde)", "https://www.gutenberg.org/ebooks/1017"] },
-};
+  async function loadWeek() {
+    $("date").textContent = new Date().toDateString();
+    updateOfflineUI();
 
+    let data;
+    try {
+      const res = await fetch("./week.json", { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load week.json");
+      data = await res.json();
+    } catch (e) {
+      $("status").innerHTML = `<span class="error">Could not load week.json (offline or missing file).</span>`;
+      return;
+    }
 
-  const now = new Date();
-  const day = now.getDay(); // Sun=0..Sat=6
-  const map = {0:0,1:1,2:2,3:3,4:4,5:5,6:6}; // keep as-is
-  const entry = week[map[day]];
+    $("weekOf").textContent = data.weekOf ? `Week of ${data.weekOf}` : "";
 
-  document.getElementById("date").textContent = now.toDateString();
+    const day = new Date().getDay(); // Sun=0..Sat=6
+    const todays = data.days?.[String(day)];
+    if (!todays) {
+      $("status").innerHTML = `<span class="error">No entry found for day ${day} in week.json</span>`;
+      return;
+    }
 
-  const set = (id, [title, url]) => {
-    const a = document.getElementById(id);
-    a.textContent = title;
-    a.href = url;
-  };
+    setLink("poem", todays.poem);
+    setLink("story", todays.story);
+    setLink("essay", todays.essay);
 
-  set("poem", entry.poem);
-  set("story", entry.story);
-  set("essay", entry.essay);
+    // Done checkboxes saved per date
+    const todayKey = keyForToday();
+    bindDone("poemDone",  `done:${todayKey}:poem`);
+    bindDone("storyDone", `done:${todayKey}:story`);
+    bindDone("essayDone", `done:${todayKey}:essay`);
+
+    $("openAll").onclick = () => {
+      window.open(todays.poem.url,  "_blank", "noreferrer");
+      window.open(todays.story.url, "_blank", "noreferrer");
+      window.open(todays.essay.url, "_blank", "noreferrer");
+    };
+
+    $("copyLinks").onclick = async () => {
+      const text =
+`Tonight's Reading (${todayKey})
+Poem: ${todays.poem.title} — ${todays.poem.url}
+Story: ${todays.story.title} — ${todays.story.url}
+Essay: ${todays.essay.title} — ${todays.essay.url}`;
+      try {
+        await navigator.clipboard.writeText(text);
+        $("status").textContent = "Copied.";
+        setTimeout(()=>{$("status").textContent="";}, 1200);
+      } catch {
+        $("status").innerHTML = `<span class="error">Clipboard blocked by browser. Copy manually.</span>`;
+      }
+    };
+  }
+
+  loadWeek();
 </script>
 </body>
 </html>
