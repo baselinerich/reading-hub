@@ -1,0 +1,40 @@
+﻿{
+  "weekOf": "2026-01-04",
+  "days": {
+    "0": {
+      "poem": { "title": "Desiderata (Ehrmann)", "url": "https://en.wikisource.org/wiki/Desiderata" },
+      "story": { "title": "A Jury of Her Peers (Susan Glaspell)", "url": "https://www.gutenberg.org/ebooks/20872" },
+      "essay": { "title": "The Soul of Man Under Socialism (Wilde)", "url": "https://www.gutenberg.org/ebooks/1017" }
+    },
+    "1": {
+      "poem": { "title": "O Captain! My Captain! (Whitman)", "url": "https://www.poetryfoundation.org/poems/45474/o-captain-my-captain" },
+      "story": { "title": "The Open Window (Saki)", "url": "https://en.wikisource.org/wiki/Beasts_and_Super-Beasts/The_Open_Window" },
+      "essay": { "title": "Politics and the English Language (Orwell)", "url": "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/" }
+    },
+    "2": {
+      "poem": { "title": "If— (Kipling)", "url": "https://www.poetryfoundation.org/poems/46473/if---" },
+      "story": { "title": "The Yellow Wallpaper (Gilman)", "url": "https://www.gutenberg.org/ebooks/1952" },
+      "essay": { "title": "Self-Reliance (Emerson)", "url": "https://www.gutenberg.org/ebooks/16643" }
+    },
+    "3": {
+      "poem": { "title": "Invictus (Henley)", "url": "https://www.poetryfoundation.org/poems/51642/invictus" },
+      "story": { "title": "Bartleby, the Scrivener (Melville)", "url": "https://www.gutenberg.org/ebooks/11231" },
+      "essay": { "title": "Walking (Thoreau)", "url": "https://www.gutenberg.org/ebooks/1022" }
+    },
+    "4": {
+      "poem": { "title": "Because I could not stop for Death (Dickinson)", "url": "https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479" },
+      "story": { "title": "An Occurrence at Owl Creek Bridge (Bierce)", "url": "https://www.gutenberg.org/ebooks/375" },
+      "essay": { "title": "Why I Write (Orwell)", "url": "https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/why-i-write/" }
+    },
+    "5": {
+      "poem": { "title": "Do Not Go Gentle into That Good Night (Thomas)", "url": "https://poets.org/poem/do-not-go-gentle-good-night" },
+      "story": { "title": "The Metamorphosis (Kafka)", "url": "https://www.gutenberg.org/ebooks/5200" },
+      "essay": { "title": "Albert Camus (Stanford Encyclopedia)", "url": "https://plato.stanford.edu/entries/camus/" }
+    },
+    "6": {
+      "poem": { "title": "Stopping by Woods on a Snowy Evening (Frost)", "url": "https://www.poetryfoundation.org/poems/42891/stopping-by-woods-on-a-snowy-evening" },
+      "story": { "title": "The Monkey's Paw (W. W. Jacobs)", "url": "https://en.wikisource.org/wiki/The_Lady_of_the_Barge/The_Monkey%27s_Paw" },
+      "essay": { "title": "Civil Disobedience (Thoreau)", "url": "https://www.gutenberg.org/ebooks/71" }
+    }
+  }
+}

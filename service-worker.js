@@ -1,12 +1,11 @@
-﻿const CACHE_NAME = "reading-hub-v1";
+﻿const CACHE_NAME = "reading-hub-v2";
 const ASSETS = [
   "./",
   "./index.html",
-  "./week.json",
-  "./manifest.webmanifest"
+  "./manifest.webmanifest",
+  "./weeks/index.json"
 ];
 
-// Install: cache the app shell + current week
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
@@ -14,7 +13,6 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate: cleanup old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -24,16 +22,13 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch strategy:
-// - For week.json: network-first (so updates show up), fallback to cache
-// - For everything else: cache-first
+// Network-first for JSON (week files), cache-first for everything else
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
-
-  // Only handle same-origin requests
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.endsWith("/week.json")) {
+  const isJson = url.pathname.endsWith(".json") || url.pathname.endsWith("/week.json");
+  if (isJson) {
     event.respondWith(
       fetch(event.request)
         .then((res) => {

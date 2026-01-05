@@ -15,16 +15,15 @@
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:24px;max-width:720px}
     h1{margin:0 0 6px 0}
     .muted{color:#666}
-    .row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
-    button{
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;align-items:center}
+    button, select{
       padding:10px 12px;border:1px solid #ddd;border-radius:12px;background:transparent;cursor:pointer
     }
     button:active{transform:scale(0.99)}
     .card{border:1px solid #ddd;border-radius:16px;padding:16px;margin:12px 0}
     a.button{
       display:block; padding:14px 16px; border:1px solid #ddd; border-radius:14px;
-      text-decoration:none; margin-top:10px;
-      word-break:break-word;
+      text-decoration:none; margin-top:10px; word-break:break-word;
     }
     a.button:active{transform:scale(0.99)}
     .doneRow{display:flex;align-items:center;gap:10px;margin-top:10px}
@@ -36,11 +35,20 @@
 <body>
   <h1>Night Reading</h1>
   <div class="muted" id="date"></div>
-  <div class="muted" id="weekOf"></div>
+  <div class="muted" id="viewing"></div>
+
   <div class="row">
     <button id="openAll">Open all</button>
     <button id="copyLinks">Copy links</button>
     <span class="pill" id="offlinePill" style="display:none;">Offline</span>
+  </div>
+
+  <div class="row">
+    <span class="pill">Archive</span>
+    <select id="archiveSelect" style="min-width:220px">
+      <option value="">Loading…</option>
+    </select>
+    <button id="goWeek">Go</button>
   </div>
 
   <div class="card">
@@ -80,19 +88,28 @@
 
   const $ = (id) => document.getElementById(id);
 
-  function setLink(id, item) {
-    const a = $(id);
-    a.textContent = item.title;
-    a.href = item.url;
-  }
-
-  function keyForToday() {
-    const d = new Date();
-    // YYYY-MM-DD local
+  function formatYMD(d){
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth()+1).padStart(2,"0");
     const dd = String(d.getDate()).padStart(2,"0");
     return `${yyyy}-${mm}-${dd}`;
+  }
+
+  function startOfWeekSunday(d){
+    const x = new Date(d);
+    x.setHours(0,0,0,0);
+    x.setDate(x.getDate() - x.getDay()); // Sun=0
+    return x;
+  }
+
+  function keyForToday() {
+    return formatYMD(new Date());
+  }
+
+  function setLink(id, item) {
+    const a = $(id);
+    a.textContent = item.title;
+    a.href = item.url;
   }
 
   function bindDone(id, storageKey) {
@@ -109,26 +126,86 @@
   window.addEventListener("online", updateOfflineUI);
   window.addEventListener("offline", updateOfflineUI);
 
-  async function loadWeek() {
+  async function fetchJson(path){
+    const res = await fetch(path, { cache: "no-store" });
+    if (!res.ok) throw new Error(`Failed ${path} (${res.status})`);
+    return res.json();
+  }
+
+  async function loadArchiveIndex(selectedWeek){
+    const sel = $("archiveSelect");
+    try {
+      const idx = await fetchJson("./weeks/index.json");
+      const weeks = (idx && idx.weeks) ? idx.weeks : [];
+
+      sel.innerHTML = "";
+      if (!weeks.length){
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "No archived weeks yet";
+        sel.appendChild(opt);
+        return;
+      }
+
+      // newest first
+      weeks.slice().sort((a,b)=> (a.weekOf < b.weekOf ? 1 : -1)).forEach(w=>{
+        const opt = document.createElement("option");
+        opt.value = w.weekOf;
+        opt.textContent = w.label || `Week of ${w.weekOf}`;
+        if (w.weekOf === selectedWeek) opt.selected = true;
+        sel.appendChild(opt);
+      });
+    } catch {
+      sel.innerHTML = "<option value=''>Archive unavailable</option>";
+    }
+  }
+
+  async function loadWeekData(weekOf){
+    // Prefer archived file: /weeks/YYYY-MM-DD.json
+    try {
+      return await fetchJson(`./weeks/${weekOf}.json`);
+    } catch {
+      // Fallback to root week.json if you keep it
+      return await fetchJson("./week.json");
+    }
+  }
+
+  function setQueryWeek(weekOf){
+    const u = new URL(window.location.href);
+    u.searchParams.set("week", weekOf);
+    window.location.href = u.toString();
+  }
+
+  async function init(){
     $("date").textContent = new Date().toDateString();
     updateOfflineUI();
 
+    const params = new URLSearchParams(window.location.search);
+    const autoWeek = formatYMD(startOfWeekSunday(new Date()));
+    const selectedWeek = params.get("week") || autoWeek;
+
+    await loadArchiveIndex(selectedWeek);
+
+    $("goWeek").onclick = () => {
+      const w = $("archiveSelect").value;
+      if (w) setQueryWeek(w);
+    };
+
     let data;
     try {
-      const res = await fetch("./week.json", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to load week.json");
-      data = await res.json();
+      data = await loadWeekData(selectedWeek);
     } catch (e) {
-      $("status").innerHTML = `<span class="error">Could not load week.json (offline or missing file).</span>`;
+      $("status").innerHTML = `<span class="error">Could not load week data.</span>`;
       return;
     }
 
-    $("weekOf").textContent = data.weekOf ? `Week of ${data.weekOf}` : "";
+    const effectiveWeek = data.weekOf || selectedWeek;
+    $("viewing").textContent = `Viewing week of ${effectiveWeek}`;
 
     const day = new Date().getDay(); // Sun=0..Sat=6
     const todays = data.days?.[String(day)];
     if (!todays) {
-      $("status").innerHTML = `<span class="error">No entry found for day ${day} in week.json</span>`;
+      $("status").innerHTML = `<span class="error">No entry found for day ${day} in this week file.</span>`;
       return;
     }
 
@@ -136,7 +213,7 @@
     setLink("story", todays.story);
     setLink("essay", todays.essay);
 
-    // Done checkboxes saved per date
+    // Done checkboxes saved per real date (what you read tonight)
     const todayKey = keyForToday();
     bindDone("poemDone",  `done:${todayKey}:poem`);
     bindDone("storyDone", `done:${todayKey}:story`);
@@ -150,7 +227,7 @@
 
     $("copyLinks").onclick = async () => {
       const text =
-`Tonight's Reading (${todayKey})
+`Tonight's Reading (${todayKey}) — Week of ${effectiveWeek}
 Poem: ${todays.poem.title} — ${todays.poem.url}
 Story: ${todays.story.title} — ${todays.story.url}
 Essay: ${todays.essay.title} — ${todays.essay.url}`;
@@ -164,7 +241,7 @@ Essay: ${todays.essay.title} — ${todays.essay.url}`;
     };
   }
 
-  loadWeek();
+  init();
 </script>
 </body>
 </html>
